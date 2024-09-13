@@ -2,7 +2,7 @@ import { onCloseDateModal, onOpenDateModal, uiSlice } from '../../../src/store/u
 
 describe('Test in uiSlice', () => {
 
-    test('Should return to the default state ', () => {
+    test('Should return to the default state', () => {
 
         //console.log(uiSlice.getInitialState());
         expect(uiSlice.getInitialState()).toEqual({
