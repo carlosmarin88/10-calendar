@@ -7,6 +7,7 @@ import { es } from 'date-fns/locale/es';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useCalendarStore, useUIStore } from '../../hooks';
+import { getEnvVariables } from '../../helpers';
 
 registerLocale('es', es);
 
@@ -21,8 +22,9 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root');
-
+if (getEnvVariables().VITE_MODE !== 'test') {
+    Modal.setAppElement('#root');
+}
 
 export const CalendarModal = () => {
 
@@ -47,7 +49,7 @@ export const CalendarModal = () => {
     }, [formValues.title, formSubmitted]);
 
     useEffect(() => {
-        if(activeEvent!==null){
+        if (activeEvent !== null) {
             setFormValues({
                 ...activeEvent
             })
@@ -76,7 +78,7 @@ export const CalendarModal = () => {
         closeDateModal();
     }
 
-    const onSubmit = async(event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
         setFormSubmitted(true);
         const difference = differenceInSeconds(formValues.end, formValues.start);
